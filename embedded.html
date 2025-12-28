@@ -34,10 +34,33 @@ nav{
     justify-content:space-between;
     align-items:center;
     padding:14px 60px;
-    background:rgba(0,0,0,0.75);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    background: #000; /* Solid black */
+    border-bottom: 1px solid #00eaff33; /* subtle border */
 }
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:18px; /* smaller gap */
+}
+
+nav a{
+    text-decoration:none;
+    color: #fff; /* inactive link white */
+    font-weight:600;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+nav a.active{
+    color: #00eaff; /* active link cyan */
+    text-shadow: 0 0 8px #00eaff;
+}
+
+nav a:hover:not(.active){
+    color: #00eaff; /* hover effect only for inactive links */
+}
+
 
 .logo-container{
     display:flex;
@@ -698,5 +721,6 @@ function runCode(){
 
 </body>
 </html>
+
 
 
