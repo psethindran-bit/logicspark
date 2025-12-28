@@ -20,37 +20,28 @@
         }
 
         body {
-            margin: 0;
-            background: #000;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-            background-size: 50px 50px;
-            color: var(--light-blue);
-            font-family: 'Rajdhani', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    margin: 0;
+    min-height: 100vh;
+    background: #000;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: #eaeaea;
+    font-family: 'Rajdhani', sans-serif;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 60px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-        /* NAVBAR */
-        nav {
-            backdrop-filter: blur(10px);
-            background: var(--medium-blue);
-            padding: 10px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 234, 255, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+
 
         .logo-text {
     font-family: 'Orbitron', sans-serif;
@@ -234,4 +225,5 @@
 
 </body>
 </html>
+
 
