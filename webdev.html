@@ -16,26 +16,27 @@
     --pro-bg:#001f33;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    background: #000;
+body{
+    margin:0;
+    min-height:100vh;
+    background:#000;
     background-image:
         linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    color: #eaeaea;
-    font-family: 'Rajdhani', sans-serif;
+    background-size:50px 50px;
+    color:#eaeaea;
+    font-family:'Rajdhani',sans-serif;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 60px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 60px;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .logo-container{
@@ -48,11 +49,6 @@ nav {
     font-size:1.6rem;
     color:var(--neon);
     letter-spacing:4px;
-    text-shadow:
-        0 0 5px var(--neon),
-        0 0 10px var(--neon),
-        0 0 20px var(--neon),
-        0 0 40px var(--neon);
 }
 
 .tagline{
@@ -69,42 +65,12 @@ nav ul{
 
 nav a{
     text-decoration:none;
-    color: #00eaff;
-    font-weight:600;
-    position: relative;
-    transition: all 0.3s ease;
-    text-shadow:
-        0 0 5px #00eaff,
-        0 0 10px #00eaff,
-        0 0 20px #00eaff,
-        0 0 40px #00eaff;
+    color:#eaeaea;
+    transition:0.2s;
 }
 
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: #00eaff;
-    box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
-    transition: width 0.3s;
-}
-
-nav a:hover::after,
-nav a.active::after {
-    width: 100%;
-}
-
-nav a:hover,
-nav a.active {
-    color: #00ffff;
-    text-shadow:
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 30px #00ffff,
-        0 0 50px #00ffff;
+nav a.active, nav a:hover{
+    color:var(--neon);
 }
 
 /* CONTENT */
@@ -304,12 +270,308 @@ footer span{color:var(--neon);}
 <div class="container">
 
 <h1>WEB DEVELOPMENT — COMPLETE ROADMAP</h1>
-<p>Master web development from scratch with this comprehensive roadmap. Each level builds practical skills with real-world code examples and pro tips for success.</p>
+<p>Master web development from scratch with this comprehensive roadmap. Each level builds practical skills with real-world code examples and pro tips for success.</p>[web:6]
 
 <!-- BASIC LEVEL -->
 <h2>LEVEL 1 — BASIC</h2>
 
-<!-- ... all your existing cards and editor code remains unchanged ... -->
+<div class="card">
+<div class="card-level">BEGINNER</div>
+<div class="card-title">HTML & CSS Foundations</div>
+<div class="card-desc">
+Master the structure of web pages with semantic HTML5 and modern CSS styling techniques for professional layouts.
+</div>
+<ul class="card-skills">
+<li>Create semantic headings (h1-h6), paragraphs, and lists</li>
+<li>Build navigation menus with &lt;nav&gt; and links</li>
+<li>Embed images, videos, and responsive media</li>
+<li>Style with CSS colors, Google Fonts, and Flexbox basics</li>
+<li>Understand box model, padding, margins, and positioning</li>
+</ul>
+<div class="code-example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to Logic Spark&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: Always use semantic HTML for better SEO and accessibility. Validate your code at validator.w3.org.[web:6]
+</div>
+</div>
+
+<div class="card">
+<div class="card-level">BEGINNER</div>
+<div class="card-title">CSS Flexbox & Grid</div>
+<div class="card-desc">
+Create responsive layouts using modern CSS Flexbox and Grid systems for pixel-perfect designs across all devices.
+</div>
+<ul class="card-skills">
+<li>Master Flexbox properties: justify-content, align-items</li>
+<li>Create CSS Grid layouts with grid-template-columns</li>
+<li>Build responsive navigation and card layouts</li>
+<li>Use media queries for mobile-first design</li>
+<li>Combine Flexbox (1D) and Grid (2D) layouts effectively</li>
+</ul>
+<div class="code-example">
+<pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: Flexbox excels for 1D layouts (rows/columns), Grid for 2D layouts. Test on real devices.[web:6]
+</div>
+</div>
+
+<!-- MEDIUM LEVEL -->
+<h2>LEVEL 2 — MEDIUM</h2>
+
+<div class="card">
+<div class="card-level">INTERMEDIATE</div>
+<div class="card-title">JavaScript Basics</div>
+<div class="card-desc">
+Add interactivity with modern JavaScript ES6+ syntax, functions, and event handling for dynamic web experiences.
+</div>
+<ul class="card-skills">
+<li>Declare variables with let/const, understand scope</li>
+<li>Work with arrays, objects, and modern methods (map, filter)</li>
+<li>Create arrow functions and template literals</li>
+<li>Handle events: click, input, submit</li>
+<li>Debug with console.log(), breakpoints</li>
+</ul>
+<div class="code-example">
+<pre><code>// Modern ES6+ JavaScript
+const users = ['Alice', 'Bob', 'Charlie'];
+
+const uppercased = users.map(name => name.toUpperCase());
+console.log(uppercased); // ['ALICE', 'BOB', 'CHARLIE']
+
+// Event handler
+document.querySelector('button').addEventListener('click', () => {
+    alert('Button clicked!');
+});</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: Use strict mode ('use strict') and modern ES6+ syntax. Practice on CodePen or JSFiddle.[web:9]
+</div>
+</div>
+
+<div class="card">
+<div class="card-level">INTERMEDIATE</div>
+<div class="card-title">DOM Manipulation</div>
+<div class="card-desc">
+Dynamically update page content, styles, and structure using JavaScript DOM APIs for interactive UIs.
+</div>
+<ul class="card-skills">
+<li>Select elements: querySelector, getElementById</li>
+<li>Modify textContent, innerHTML, attributes</li>
+<li>Style manipulation: element.style.property</li>
+<li>Create/remove elements dynamically</li>
+<li>Event delegation for performance</li>
+</ul>
+<div class="code-example">
+<pre><code>// Live DOM manipulation example
+const button = document.querySelector('#myButton');
+const output = document.querySelector('#result');
+
+button.addEventListener('click', () => {
+    const newDiv = document.createElement('div');
+    newDiv.textContent = 'New element added!';
+    newDiv.style.color = 'cyan';
+    newDiv.style.padding = '10px';
+    
+    document.body.appendChild(newDiv);
+    
+    output.innerHTML = `Total elements: ${document.querySelectorAll('div').length}`;
+});</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: Use textContent over innerHTML to prevent XSS. Event delegation improves performance.[web:9]
+</div>
+</div>
+
+<!-- ADVANCED LEVEL -->
+<h2>LEVEL 3 — ADVANCED</h2>
+
+<div class="card">
+<div class="card-level">ADVANCED</div>
+<div class="card-title">Responsive Design & Frameworks</div>
+<div class="card-desc">
+Build production-ready responsive websites using CSS frameworks and modern responsive techniques.
+</div>
+<ul class="card-skills">
+<li>Master CSS media queries and container queries</li>
+<li>Implement Tailwind CSS or Bootstrap 5</li>
+<li>Mobile-first responsive design principles</li>
+<li>Optimize for different screen sizes and orientations</li>
+<li>Progressive Enhancement approach</li>
+</ul>
+<div class="card-pro">
+Pro Insight: Test on BrowserStack or LambdaTest. Use container queries for component-based design.[web:6]
+</div>
+</div>
+
+<div class="card">
+<div class="card-level">ADVANCED</div>
+<div class="card-title">APIs & AJAX</div>
+<div class="card-desc">
+Fetch real-time data from REST APIs and display dynamic content without page reloads using modern Fetch API.
+</div>
+<ul class="card-skills">
+<li>Use modern fetch() API with async/await</li>
+<li>Parse JSON responses and handle errors</li>
+<li>Update DOM with API data dynamically</li>
+<li>Implement loading states and error handling</li>
+<li>CORS handling and API authentication</li>
+</ul>
+<div class="code-example">
+<pre><code>// Fetch API with async/await
+async function fetchUsers() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const users = await response.json();
+        
+        users.slice(0, 5).forEach(user => {
+            const div = document.createElement('div');
+            div.innerHTML = `&lt;h3&gt;${user.name}&lt;/h3&gt;&lt;p&gt;${user.email}&lt;/p&gt;`;
+            document.body.appendChild(div);
+        });
+    } catch (error) {
+        console.error('API Error:', error);
+    }
+}
+
+fetchUsers();</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: Always handle errors and show loading states. Use JSONPlaceholder for practice APIs.[web:10]
+</div>
+</div>
+
+<!-- NEW ADVANCED SECTION -->
+<div class="card">
+<div class="card-level">ADVANCED</div>
+<div class="card-title">Modern Web APIs</div>
+<div class="card-desc">
+Leverage cutting-edge browser APIs for enhanced user experiences and performance optimization.
+</div>
+<ul class="card-skills">
+<li>LocalStorage and SessionStorage for data persistence</li>
+<li>Intersection Observer for lazy loading</li>
+<li>Service Workers for offline functionality</li>
+<li>Web Animations API for smooth transitions</li>
+<li>Geolocation and Notification APIs</li>
+</ul>
+<div class="card-pro">
+Pro Insight: Progressive Web Apps (PWAs) combine these APIs for app-like experiences.[web:6]
+</div>
+</div>
+
+<!-- PRACTICE -->
+<h2>PRACTICE ZONE — WEB CODE CHECKER</h2>
+
+<p>
+Experiment with HTML, CSS, and JavaScript in real-time. Modify the code below and click RUN to see instant results with console feedback.
+</p>
+
+<div class="editor-box">
+  <div class="editor-header">
+    <span>Web Code Editor</span>
+    <button onclick="runCode()">RUN</button>
+  </div>
+
+  <div class="editor">
+    <textarea id="code">
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            font-family: Arial; 
+            background: linear-gradient(45deg, #000, #001f33);
+            padding: 20px;
+            color: white;
+        }
+        .counter { 
+            font-size: 3rem; 
+            text-align: center;
+            margin: 50px 0;
+        }
+        button { 
+            background: #00eaff;
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover { 
+            box-shadow: 0 0 20px #00eaff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Counter</h1>
+    <div class="counter" id="counter">0</div>
+    <button onclick="increment()">+</button>
+    <button onclick="decrement()">-</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        let count = 0;
+        const counter = document.getElementById('counter');
+        
+        function increment() {
+            count++;
+            counter.textContent = count;
+        }
+        
+        function decrement() {
+            count--;
+            counter.textContent = count;
+        }
+        
+        function reset() {
+            count = 0;
+            counter.textContent = count;
+        }
+    </script>
+</body>
+</html>
+    </textarea>
+
+    <iframe id="output"></iframe>
+  </div>
+
+  <div class="console" id="console">Console ready... Try the interactive counter above!</div>
+</div>
 
 </div>
 
@@ -334,4 +596,3 @@ function runCode(){
 
 </body>
 </html>
-
