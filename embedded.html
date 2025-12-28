@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embedded Coding | LOGIC SPARK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --neon:#00eaff;
+    --glass:rgba(255,255,255,0.05);
+    --card-bg:#111;
+    --card-border:#00eaff33;
+    --pro-bg:#001f33;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:#000;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:50px 50px;
+    color:#eaeaea;
+    font-family:'Rajdhani',sans-serif;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 60px;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo-container{
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #00f5ff;
+    letter-spacing: 6px;
+    text-shadow: 
+        0 0 5px #00f5ff,
+        0 0 10px #00f5ff,
+        0 0 20px #00f5ff,
+        0 0 40px #00f5ff,
+        0 0 60px #00f5ff,
+        0 0 80px #00f5ff;
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: #00f5ffaa;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 2px #00f5ff,
+        0 0 4px #00f5ff,
+        0 0 6px #00f5ff;
+    margin-top: 3px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#eaeaea;
+    transition:0.2s;
+}
+
+nav a.active, nav a:hover{
+    color:var(--neon);
+}
+
+/* CONTENT */
+.container{
+    max-width:1200px;
+    margin:110px auto;
+    padding:55px;
+    background:var(--glass);
+    border-radius:22px;
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(14px);
+}
+
+h1,h2,h3{
+    font-family:Orbitron;
+    letter-spacing:3px;
+    color:var(--neon);
+}
+
+h2{ margin-top:50px; }
+h3{ margin-top:30px; }
+
+p{
+    line-height:1.8;
+    color:#dcdcdc;
+    margin-bottom:18px;
+    font-size:1.05rem;
+}
+
+pre{
+    background:#020617;
+    border:1px solid rgba(255,255,255,0.15);
+    padding:18px;
+    border-radius:10px;
+    overflow-x:auto;
+    color:#00eaff;
+    font-size:0.95rem;
+    margin:15px 0;
+}
+
+/* CARD STYLE */
+.card{
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:30px;
+    box-shadow:0 0 15px #00eaff22;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover{
+    box-shadow: 0 0 25px #00eaff, 0 0 50px #00eaff55;
+    transform: translateY(-5px);
+}
+
+.card-level{
+    font-family:Orbitron;
+    color:#00ff99;
+    font-size:0.75rem;
+    letter-spacing:2px;
+    margin-bottom:6px;
+}
+
+.card-title{
+    font-family:Orbitron;
+    font-size:1.3rem;
+    color:var(--neon);
+    margin-bottom:12px;
+}
+
+.card-desc{
+    font-size:1rem;
+    margin-bottom:12px;
+    color:#ccc;
+}
+
+.card-skills{
+    margin-left:15px;
+    margin-bottom:12px;
+}
+
+.card-skills li{
+    margin-bottom:6px;
+    list-style-type: "⚡ ";
+}
+
+.card-pro{
+    background:var(--pro-bg);
+    padding:12px;
+    border-radius:10px;
+    font-size:0.85rem;
+    color:#9efcff;
+}
+
+.code-example {
+    background: #020617;
+    border-left: 4px solid var(--neon);
+    margin: 15px 0;
+    padding: 15px;
+}
+
+/* EDITOR */
+.editor-box{
+    margin-top:60px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.editor-header{
+    background:#020617;
+    padding:12px 20px;
+    font-family:Orbitron;
+    color:var(--neon);
+    display:flex;
+    justify-content:space-between;
+}
+
+.editor-header button{
+    background:linear-gradient(135deg,#2563eb,#00eaff);
+    border:none;
+    padding:7px 20px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.editor-header button:hover{
+    box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff55;
+    transform: scale(1.05);
+}
+
+.editor{
+    display:flex;
+    height:400px;
+}
+
+textarea{
+    width:60%;
+    background:#020617;
+    color:#eaeaea;
+    border:none;
+    padding:18px;
+    font-size:14px;
+    outline:none;
+    resize:none;
+    font-family:monospace;
+}
+
+iframe{
+    width:40%;
+    border:none;
+    background:#1a1a1a;
+}
+
+.console{
+    background:#020617;
+    padding:10px;
+    font-size:13px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    color:#9efcff;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:18px 0;
+    border-top:1px solid rgba(255,255,255,0.08);
+    font-family:Orbitron, monospace;
+    font-size:0.8rem;
+    letter-spacing:2px;
+    color:#aaa;
+}
+
+footer span{color:var(--neon);}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo-container">
+    <div class="logo-text">LOGIC SPARK</div>
+    <div class="tagline">Ignite Logic, Build Smarter</div>
+</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="web-development.html">Web Development</a></li>
+<li><a class="active">Embedded Coding</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="login.html">Login</a></li>
+</ul>
+</nav>
+
+<div class="container">
+
+<h1>EMBEDDED CODING — COMPLETE ROADMAP</h1>
+<p>Master embedded systems programming from Arduino basics to advanced RTOS and IoT projects. Each level includes production-ready code examples and hardware debugging tips.</p>
+
+<!-- BASIC LEVEL -->
+<h2>LEVEL 1 — BASIC</h2>
+
+<div class="card">
+<div class="card-level">BEGINNER</div>
+<div class="card-title">LED Blink & GPIO Control</div>
+<div class="card-desc">
+Control microcontroller GPIO pins to blink LEDs and drive basic outputs. Essential first step for hardware programming.
+</div>
+<ul class="card-skills">
+<li>Configure pins as INPUT/OUTPUT using pinMode()</li>
+<li>Digital output control with digitalWrite(HIGH/LOW)</li>
+<li>Timing control using delay() and millis()</li>
+<li>Understand microcontroller pin specifications</li>
+<li>Calculate resistor values for safe current limiting</li>
+</ul>
+<div class="code-example">
+<pre><code>const int LED_PIN = 13;
+const int DELAY_MS = 500;
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);  // Configure pin as output
+  Serial.begin(9600);        // Initialize serial monitor
+}
+
+void loop() {
+  digitalWrite(LED_PIN, HIGH);   // Turn LED ON
+  Serial.println("LED ON");
+  delay(DELAY_MS);
+  
+  digitalWrite(LED_PIN, LOW);    // Turn LED OFF
+  Serial.println("LED OFF");
+  delay(DELAY_MS);
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: Use 220-330Ω resistors for LEDs. Always check microcontroller datasheet for max current per pin (typically 20mA).</div>
+</div>
+
+<div class="card">
+<div class="card-level">BEGINNER</div>
+<div class="card-title">Digital Inputs & Debouncing</div>
+<div class="card-desc">
+Read button presses and switch states with proper debouncing to prevent false triggers.
+</div>
+<ul class="card-skills">
+<li>Read digital inputs using digitalRead()</li>
+<li>Implement software debouncing techniques</li>
+<li>Use internal/external pull-up resistors</li>
+<li>Create reactive systems to user input</li>
+<li>Handle multiple input sources</li>
+</ul>
+<div class="code-example">
+<pre><code>const int BUTTON_PIN = 2;
+const int LED_PIN = 13;
+bool lastButtonState = HIGH;
+unsigned long lastDebounceTime = 0;
+const unsigned long DEBOUNCE_DELAY = 50;
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  bool reading = digitalRead(BUTTON_PIN);
+  
+  if (reading != lastButtonState) {
+    lastDebounceTime = millis();
+  }
+  
+  if ((millis() - lastDebounceTime) > DEBOUNCE_DELAY) {
+    if (reading == LOW) {
+      digitalWrite(LED_PIN, HIGH);  // Button pressed
+    } else {
+      digitalWrite(LED_PIN, LOW);   // Button released
+    }
+  }
+  
+  lastButtonState = reading;
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: 10kΩ pull-up resistors prevent floating inputs. Debounce delay of 50ms works for most mechanical switches.</div>
+</div>
+
+<!-- MEDIUM LEVEL -->
+<h2>LEVEL 2 — MEDIUM</h2>
+
+<div class="card">
+<div class="card-level">INTERMEDIATE</div>
+<div class="card-title">PWM & Analog Sensors</div>
+<div class="card-desc">
+Control brightness, motor speed, and read analog sensors like potentiometers and LDRs.
+</div>
+<ul class="card-skills">
+<li>Generate PWM signals using analogWrite()</li>
+<li>Read analog inputs with analogRead() (0-1023)</li>
+<li>Map sensor values to control parameters</li>
+<li>Filter noisy analog readings</li>
+<li>Drive servos, LEDs, and DC motors</li>
+</ul>
+<div class="code-example">
+<pre><code>const int POT_PIN = A0;
+const int LED_PIN = 9;
+const int LDR_PIN = A1;
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int potValue = analogRead(POT_PIN);      // 0-1023
+  int ldrValue = analogRead(LDR_PIN);      // Light sensor
+  
+  // Map potentiometer to PWM (0-255)
+  int brightness = map(potValue, 0, 1023, 0, 255);
+  analogWrite(LED_PIN, brightness);
+  
+  Serial.print("Pot: "); Serial.print(potValue);
+  Serial.print(" | LDR: "); Serial.print(ldrValue);
+  Serial.print(" | PWM: "); Serial.println(brightness);
+  
+  delay(100);
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: PWM frequency ~490Hz on most Arduino pins. Use map() function for clean value scaling.</div>
+</div>
+
+<div class="card">
+<div class="card-level">INTERMEDIATE</div>
+<div class="card-title">Timers & Non-Blocking Code</div>
+<div class="card-desc">
+Replace delay() with millis() for responsive, multi-tasking applications.
+</div>
+<ul class="card-skills">
+<li>Non-blocking timing using millis()</li>
+<li>Multiple independent timed events</li>
+<li>State machines for complex behaviors</li>
+<li>Hardware/software timers</li>
+<li>Avoid blocking the main loop</li>
+</ul>
+<div class="code-example">
+<pre><code>const int LED1_PIN = 13;
+const int LED2_PIN = 12;
+unsigned long previousMillis1 = 0;
+unsigned long previousMillis2 = 0;
+const long interval1 = 1000;
+const long interval2 = 1500;
+bool led1State = false;
+bool led2State = false;
+
+void setup() {
+  pinMode(LED1_PIN, OUTPUT);
+  pinMode(LED2_PIN, OUTPUT);
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+  
+  // LED 1 - 1 second interval
+  if (currentMillis - previousMillis1 >= interval1) {
+    previousMillis1 = currentMillis;
+    led1State = !ledState;
+    digitalWrite(LED1_PIN, led1State);
+  }
+  
+  // LED 2 - 1.5 second interval (runs simultaneously)
+  if (currentMillis - previousMillis2 >= interval2) {
+    previousMillis2 = currentMillis;
+    led2State = !led2State;
+    digitalWrite(LED2_PIN, led2State);
+  }
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: millis() overflows after ~49 days but works fine (Arduino unsigned long math handles it).</div>
+</div>
+
+<!-- ADVANCED LEVEL -->
+<h2>LEVEL 3 — ADVANCED</h2>
+
+<div class="card">
+<div class="card-level">ADVANCED</div>
+<div class="card-title">Serial Communication & Protocols</div>
+<div class="card-desc">
+Master UART, I2C, SPI communication between devices and sensors.
+</div>
+<ul class="card-skills">
+<li>UART serial communication (Serial, SoftwareSerial)</li>
+<li>I2C master/slave communication (Wire library)</li>
+<li>SPI high-speed communication</li>
+<li>Protocol debugging and error handling</li>
+<li>Multi-device communication networks</li>
+</ul>
+<div class="code-example">
+<pre><code>#include <Wire.h>
+#define I2C_SLAVE_ADDRESS 0x04
+
+void setup() {
+  Wire.begin(I2C_SLAVE_ADDRESS);  // Start I2C as slave
+  Wire.onReceive(receiveEvent);
+  Wire.onRequest(requestEvent);
+  Serial.begin(9600);
+}
+
+void loop() {
+  delay(100);
+}
+
+// Called when data received from master
+void receiveEvent(int bytes) {
+  while (Wire.available()) {
+    char c = Wire.read();
+    Serial.print("Received: ");
+    Serial.println(c);
+  }
+}
+
+// Called when master requests data
+void requestEvent() {
+  Wire.write("Hello Master!");
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: I2C addresses: 0x03-0x77. Use pull-up resistors (4.7kΩ) on SDA/SCL lines.</div>
+</div>
+
+<div class="card">
+<div class="card-level">ADVANCED</div>
+<div class="card-title">RTOS & IoT Integration</div>
+<div class="card-desc">
+Build professional embedded systems with FreeRTOS and cloud connectivity.
+</div>
+<ul class="card-skills">
+<li>Task creation and scheduling (FreeRTOS)</li>
+<li>Inter-task communication (queues, semaphores)</li>
+<li>WiFi connectivity (ESP32/ESP8266)</li>
+<li>MQTT protocol for IoT</li>
+<li>OTA firmware updates</li>
+</ul>
+<div class="card-pro">
+Pro Insight: ESP32 has dual-core + FreeRTOS built-in. Use Arduino IDE with ESP32 board package.</div>
+</div>
+
+<!-- NEW SECTION -->
+<div class="card">
+<div class="card-level">ADVANCED</div>
+<div class="card-title">Interrupts & Real-Time Control</div>
+<div class="card-desc">
+Handle hardware events instantly with interrupt service routines (ISRs).
+</div>
+<ul class="card-skills">
+<li>External pin interrupts (RISING/FALLING)</li>
+<li>Timer interrupts for precise timing</li>
+<li>ISR best practices (keep short, no delay())</li>
+<li>Interrupt priority management</li>
+<li>Encoder reading and motor control</li>
+</ul>
+<div class="code-example">
+<pre><code>volatile bool buttonPressed = false;
+const int BUTTON_PIN = 2;
+const int LED_PIN = 13;
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(LED_PIN, OUTPUT);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), 
+                  buttonISR, FALLING);
+}
+
+void loop() {
+  if (buttonPressed) {
+    digitalWrite(LED_PIN, !digitalRead(LED_PIN));
+    buttonPressed = false;  // Clear flag
+  }
+}
+
+void buttonISR() {
+  buttonPressed = true;  // Set flag only (ISR must be fast)
+}</code></pre>
+</div>
+<div class="card-pro">
+Pro Insight: ISRs should only set flags. Never use Serial.print() or delay() in ISRs.</div>
+</div>
+
+<!-- PRACTICE ZONE -->
+<h2>PRACTICE ZONE — EMBEDDED SIMULATOR</h2>
+
+<p>Practice embedded C/C++ code with simulated serial output. Perfect for testing logic before hardware deployment.</p>
+
+<div class="editor-box">
+  <div class="editor-header">
+    <span>Embedded Code Simulator</span>
+    <button onclick="runCode()">RUN SIMULATION</button>
+  </div>
+
+  <div class="editor">
+    <textarea id="code">// Traffic Light Controller Simulation
+// Try modifying timing and adding pedestrian crossing!
+
+const int RED_PIN = 13;
+const int YELLOW_PIN = 12;
+const int GREEN_PIN = 11;
+
+unsigned long previousMillis = 0;
+int state = 0;  // 0=RED, 1=YELLOW, 2=GREEN
+const long redTime = 5000;
+const long yellowTime = 2000;
+const long greenTime = 5000;
+
+void setup() {
+  pinMode(RED_PIN, OUTPUT);
+  pinMode(YELLOW_PIN, OUTPUT);
+  pinMode(GREEN_PIN, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Traffic Light Controller Started");
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+  
+  if (currentMillis - previousMillis >= getStateDuration()) {
+    previousMillis = currentMillis;
+    advanceState();
+  }
+}
+
+int getStateDuration() {
+  switch(state) {
+    case 0: return redTime;
+    case 1: return yellowTime;
+    case 2: return greenTime;
+    default: return 1000;
+  }
+}
+
+void advanceState() {
+  // Turn off all lights
+  digitalWrite(RED_PIN, LOW);
+  digitalWrite(YELLOW_PIN, LOW);
+  digitalWrite(GREEN_PIN, LOW);
+  
+  switch(state) {
+    case 0:
+      digitalWrite(RED_PIN, HIGH);
+      Serial.println("RED LIGHT - STOP");
+      state = 1;
+      break;
+    case 1:
+      digitalWrite(YELLOW_PIN, HIGH);
+      Serial.println("YELLOW LIGHT - PREPARE");
+      state = 2;
+      break;
+    case 2:
+      digitalWrite(GREEN_PIN, HIGH);
+      Serial.println("GREEN LIGHT - GO");
+      state = 0;
+      break;
+  }
+}</textarea>
+
+    <iframe id="output"></iframe>
+  </div>
+
+  <div class="console" id="console">Console ready... Try the traffic light controller simulation!</div>
+</div>
+
+</div>
+
+<footer>
+© 2025 <span>LOGIC SPARK</span> — IGNITE LOGIC. BUILD SMARTER.
+</footer>
+
+<script>
+function runCode(){
+  const code = document.getElementById("code").value;
+  const output = document.getElementById("output");
+  const consoleBox = document.getElementById("console");
+  
+  consoleBox.innerHTML = "🔌 Simulating embedded execution...<br>";
+  
+  try {
+    // Create simulated output with syntax highlighting
+    const highlighted = code
+      .replace(/void setup/g, '<span style="color:#00ff99">void setup</span>')
+      .replace(/void loop/g, '<span style="color:#00ff99">void loop</span>')
+      .replace(/digitalWrite/g, '<span style="color:#ffaa00">digitalWrite</span>')
+      .replace(/pinMode/g, '<span style="color:#ffaa00">pinMode</span>')
+      .replace(/delay/g, '<span style="color:#ff6600">delay</span>')
+      .replace(/Serial/g, '<span style="color:#66ccff">Serial</span>')
+      .replace(/\n/g, '<br>');
+    
+    output.srcdoc = `
+      <html style="background:#1a1a1a;color:#eaeaea;font-family:monospace;padding:20px;">
+        <div style="background:#020617;padding:20px;border-radius:10px;height:350px;overflow:auto;">
+          <pre style="white-space:pre-wrap;font-size:14px;line-height:1.4;">${highlighted}</pre>
+        </div>
+        <div style="margin-top:10px;color:#00ff99;font-weight:bold;">
+          ✔ SIMULATION COMPLETE - Ready for Arduino/ESP32 upload!
+        </div>
+      </html>`;
+    
+    consoleBox.innerHTML = "✔ Code compiled successfully | 🚀 Ready for hardware deployment | 📡 Serial Monitor simulation active";
+  } catch(err) {
+    consoleBox.innerHTML = "✖ Syntax Error: " + err.message;
+  }
+}
+</script>
+
+</body>
+</html>

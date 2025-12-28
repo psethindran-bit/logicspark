@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | LOGIC SPARK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+    --medium-blue: rgba(0,0,0,0.7);
+    --light-blue: #eaeaea;
+    --accent: #6aa9ff;
+    --neon-blue: #00eaff;
+    --glass: rgba(255,255,255,0.05);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #000;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+    color: var(--light-blue);
+    font-family: 'Rajdhani', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 60px;
+    background: var(--medium-blue);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,234,255,0.2);
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #00f5ff;
+    letter-spacing: 6px;
+    text-shadow: 
+        0 0 5px #00f5ff,
+        0 0 10px #00f5ff,
+        0 0 20px #00f5ff,
+        0 0 40px #00f5ff,
+        0 0 60px #00f5ff,
+        0 0 80px #00f5ff;
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: #00f5ffaa;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 2px #00f5ff,
+        0 0 4px #00f5ff,
+        0 0 6px #00f5ff;
+    margin-top: 3px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--light-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* HERO */
+.about-hero {
+    text-align: center;
+    padding: 90px 20px 40px;
+}
+
+.about-hero h1 {
+    font-family: Orbitron;
+    font-size: 3.2rem;
+    background: linear-gradient(to bottom,#fff,var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-hero p {
+    opacity: 0.9;
+}
+
+/* CONTENT */
+.content-wrap {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.mission-box {
+    background: var(--glass);
+    border: 1px solid rgba(0,234,255,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 80px;
+    backdrop-filter: blur(10px);
+}
+
+.mission-box p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+}
+
+.section-title {
+    text-align: center;
+    font-family: Orbitron;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+/* PILLARS */
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.pillar-card {
+    background: var(--glass);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+.pillar-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--neon-blue);
+    background: rgba(0,234,255,0.05);
+}
+
+.pillar-card i {
+    font-size: 2.5rem;
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+}
+
+.pillar-card h3 {
+    font-family: Orbitron;
+}
+
+/* TEAM */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 40px;
+    justify-items: center;
+}
+
+.team-card {
+    background: var(--glass);
+    border-radius: 20px;
+    padding: 60px 20px 20px 20px; /* increased padding for bigger image */
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.4s;
+    width: 100%;
+    max-width: 360px; /* slightly wider to fit larger image */
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-blue);
+}
+
+.img-wrapper {
+    width: 200px; /* wider */
+    height: 200px; /* wider */
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg,var(--medium-blue),var(--accent));
+    box-shadow: 0 0 40px rgba(0,234,255,0.6); /* stronger glow */
+}
+
+.team-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #000;
+    background-color: #000; /* makes the image appear black */
+}
+
+/* TEAM TEXT */
+.team-name {
+    font-family: Orbitron;
+    font-size: 1.4rem;
+}
+
+.team-role {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+/* FOOTER */
+footer {
+    margin-top: auto;
+    padding: 30px;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div>
+        <div class="logo-text">LOGIC SPARK</div>
+        <div class="tagline">Ignite Logic, Build Smarter</div>
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="webdev.html">Web Development</a></li>
+        <li><a href="embedded.html">Emebedded Coding</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+</nav>
+
+<div class="about-hero">
+    <h1>OUR VISION</h1>
+    <p>Igniting logic to build smarter digital solutions.</p>
+</div>
+
+<main class="content-wrap">
+    <div class="mission-box">
+        <p>
+             Logic Spark is a modern platform focused on code validation, intelligent generation,
+            and logical problem-solving. We aim to empower learners and developers by simplifying
+            complex logic into efficient, real-world software solutions.
+        </p>
+    </div>
+
+    <h2 class="section-title">CORE DIRECTIVES</h2>
+    <div class="pillars">
+        <div class="pillar-card">
+            <i class="fas fa-code"></i>
+            <h3>LOGIC</h3>
+            <p>Strengthening problem-solving through optimized code.</p>
+        </div>
+
+        <div class="pillar-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>LEARNING</h3>
+            <p>Making coding accessible for everyone.</p>
+        </div>
+
+        <div class="pillar-card">
+            <i class="fas fa-rocket"></i>
+            <h3>EXECUTION</h3>
+            <p>Transforming ideas into scalable products.</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">MEET THE OPERATIVES</h2>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="img-wrapper"><img src="ethindran.jpg" alt=""></div>
+            <h3 class="team-name">P Srinivasan Ethindran</h3>
+            <p class="team-role">Founder • Web Developer</p>
+        </div>
+
+        <div class="team-card">
+            <div class="img-wrapper"><img src="arnav.jpg" alt=""></div>
+            <h3 class="team-name">Arnav Siddhartha</h3>
+            <p class="team-role">Graphic Designer</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    © 2025 <span style="color:var(--neon-blue);font-family:Orbitron;">LOGIC SPARK</span> — IGNITE LOGIC. BUILD SMARTER.
+</footer>
+
+</body>
+</html>
