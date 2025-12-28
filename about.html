@@ -33,18 +33,38 @@ body {
 }
 
 /* NAVBAR */
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 60px;
-    background: var(--medium-blue);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,234,255,0.2);
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 60px;
+    background: #000; /* Solid black */
+    border-bottom: 1px solid #00eaff33; /* subtle border */
 }
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:18px; /* smaller gap */
+}
+
+nav a{
+    text-decoration:none;
+    color: #fff; /* inactive link white */
+    font-weight:600;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+nav a.active{
+    color: #00eaff; /* active link cyan */
+    text-shadow: 0 0 8px #00eaff;
+}
+
+nav a:hover:not(.active){
+    color: #00eaff; /* hover effect only for inactive links */
+}
+
 
 .logo-text {
     font-family: 'Orbitron', sans-serif;
@@ -313,4 +333,5 @@ footer {
 
 </body>
 </html>
+
 
