@@ -3,612 +3,787 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Embedded Coding | LOGIC SPARK</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-
+<title>Logic Spark | Embedded Coding</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root{
-    --neon:#00eaff;
-    --glass:rgba(255,255,255,0.05);
-    --card-bg:#111;
-    --card-border:#00eaff33;
-    --pro-bg:#001f33;
+:root {
+    --bg: #000;
+    --panel: rgba(255,255,255,0.06);
+    --neon: #00eaff;
+    --neon-pink: #ff006e;
+    --text: #eaeaea;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+body::before {
+    background:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+}
+
+body::after {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(0,234,255,0.15), transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255,0,110,0.12), transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes gridMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(60px); }
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 body {
-    margin: 0;
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
     min-height: 100vh;
-    background: #000;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    color: #eaeaea;
-    font-family: 'Rajdhani', sans-serif;
+    display: flex;
 }
 
-nav {
+.sidebar {
+    width: 280px;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(0,234,255,0.3);
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: var(--neon);
+    text-shadow: 0 0 20px var(--neon);
+    margin-bottom: 8px;
+}
+
+.logo span {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: rgba(0,234,255,0.7);
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--neon);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+}
+
+.nav-links a:hover::before,
+.nav-links a.active::before {
+    transform: scaleY(1);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(0,234,255,0.12);
+    color: var(--neon);
+    box-shadow: inset 0 0 20px rgba(0,234,255,0.2);
+}
+
+.main {
+    margin-left: 280px;
+    flex: 1;
+    padding: 80px 70px;
+    animation: slideIn 0.8s ease-out;
+}
+
+.page-header {
+    margin-bottom: 60px;
+}
+
+.page-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, #fff 0%, var(--neon) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+/* PLATFORMS SECTION */
+.platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-bottom: 80px;
+}
+
+.platform-card {
+    background: var(--panel);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.platform-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon);
+    background: rgba(0,234,255,0.08);
+    box-shadow: 0 10px 40px rgba(0,234,255,0.3);
+}
+
+.platform-card .icon {
+    font-size: 3rem;
+    color: var(--neon);
+    margin-bottom: 20px;
+}
+
+.platform-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.platform-card p {
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.platform-card .specs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.spec-item i {
+    color: var(--neon);
+    font-size: 0.8rem;
+}
+
+/* PROJECTS SECTION */
+.projects-section {
+    margin-top: 80px;
+}
+
+.projects-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--neon);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: var(--panel);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    border-color: var(--neon);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0,234,255,0.2);
+}
+
+.project-header {
+    padding: 30px;
+    background: rgba(0,234,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.project-header h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.project-header .difficulty {
+    display: inline-block;
+    background: rgba(0,234,255,0.2);
+    color: var(--neon);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.project-body {
+    padding: 25px 30px;
+}
+
+.project-body p {
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* RESOURCES SECTION */
+.resources {
+    margin-top: 80px;
+    background: var(--panel);
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.resources h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--neon);
+}
+
+.resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0,234,255,0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0,234,255,0.2);
+    transition: all 0.3s;
+}
+
+.resource-item:hover {
+    background: rgba(0,234,255,0.1);
+    transform: translateX(10px);
+}
+
+.resource-item i {
+    font-size: 1.5rem;
+    color: var(--neon);
+}
+
+.resource-item span {
+    font-weight: 500;
+}
+
+/* PRACTICE ZONE – EMBEDDED SIMULATOR */
+.practice-section {
+    margin-top: 80px;
+}
+
+.practice-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--neon);
+}
+
+.practice-section p {
+    font-size: 1rem;
+    opacity: 0.8;
+    max-width: 720px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.editor-box {
+    background: var(--panel);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    overflow: hidden;
+}
+
+.editor-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 60px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(12px);
+    padding: 14px 20px;
+    background: rgba(0,0,0,0.9);
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
 }
 
-nav ul{
-    list-style:none;
-    display:flex;
-    gap:18px; /* smaller gap */
+.editor-header span {
+    color: var(--neon);
 }
 
-nav a{
-    text-decoration:none;
-    color: #fff; /* inactive link white */
-    font-weight:600;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-nav a.active{
-    color: #00eaff; /* active link cyan */
-    text-shadow: 0 0 8px #00eaff;
-}
-
-nav a:hover:not(.active){
-    color: #00eaff; /* hover effect only for inactive links */
-}
-
-
-.logo-container{
-    display:flex;
-    flex-direction:column;
-}
-
-.logo-text {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    color: #00f5ff;
-    letter-spacing: 6px;
-    text-shadow: 
-        0 0 5px #00f5ff,
-        0 0 10px #00f5ff,
-        0 0 20px #00f5ff,
-        0 0 40px #00f5ff,
-        0 0 60px #00f5ff,
-        0 0 80px #00f5ff;
-}
-
-.tagline {
-    font-size: 0.75rem;
-    color: #00f5ffaa;
-    letter-spacing: 2px;
-    text-shadow:
-        0 0 2px #00f5ff,
-        0 0 4px #00f5ff,
-        0 0 6px #00f5ff;
-    margin-top: 3px;
-}
-
-nav ul{
-    list-style:none;
-    display:flex;
-    gap:25px;
-}
-
-nav a{
-    text-decoration:none;
-    color:#eaeaea;
-    transition:0.2s;
-}
-
-nav a.active, nav a:hover{
-    color:var(--neon);
-}
-
-/* CONTENT */
-.container{
-    max-width:1200px;
-    margin:110px auto;
-    padding:55px;
-    background:var(--glass);
-    border-radius:22px;
-    border:1px solid rgba(255,255,255,0.1);
-    backdrop-filter:blur(14px);
-}
-
-h1,h2,h3{
-    font-family:Orbitron;
-    letter-spacing:3px;
-    color:var(--neon);
-}
-
-h2{ margin-top:50px; }
-h3{ margin-top:30px; }
-
-p{
-    line-height:1.8;
-    color:#dcdcdc;
-    margin-bottom:18px;
-    font-size:1.05rem;
-}
-
-pre{
-    background:#020617;
-    border:1px solid rgba(255,255,255,0.15);
-    padding:18px;
-    border-radius:10px;
-    overflow-x:auto;
-    color:#00eaff;
-    font-size:0.95rem;
-    margin:15px 0;
-}
-
-/* CARD STYLE */
-.card{
-    background:var(--card-bg);
-    border:1px solid var(--card-border);
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:30px;
-    box-shadow:0 0 15px #00eaff22;
-    transition: all 0.3s ease-in-out;
-}
-
-.card:hover{
-    box-shadow: 0 0 25px #00eaff, 0 0 50px #00eaff55;
-    transform: translateY(-5px);
-}
-
-.card-level{
-    font-family:Orbitron;
-    color:#00ff99;
-    font-size:0.75rem;
-    letter-spacing:2px;
-    margin-bottom:6px;
-}
-
-.card-title{
-    font-family:Orbitron;
-    font-size:1.3rem;
-    color:var(--neon);
-    margin-bottom:12px;
-}
-
-.card-desc{
-    font-size:1rem;
-    margin-bottom:12px;
-    color:#ccc;
-}
-
-.card-skills{
-    margin-left:15px;
-    margin-bottom:12px;
-}
-
-.card-skills li{
-    margin-bottom:6px;
-    list-style-type: "⚡ ";
-}
-
-.card-pro{
-    background:var(--pro-bg);
-    padding:12px;
-    border-radius:10px;
-    font-size:0.85rem;
-    color:#9efcff;
-}
-
-.code-example {
-    background: #020617;
-    border-left: 4px solid var(--neon);
-    margin: 15px 0;
-    padding: 15px;
-}
-
-/* EDITOR */
-.editor-box{
-    margin-top:60px;
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:18px;
-    overflow:hidden;
-}
-
-.editor-header{
-    background:#020617;
-    padding:12px 20px;
-    font-family:Orbitron;
-    color:var(--neon);
-    display:flex;
-    justify-content:space-between;
-}
-
-.editor-header button{
-    background:linear-gradient(135deg,#2563eb,#00eaff);
-    border:none;
-    padding:7px 20px;
-    border-radius:20px;
-    cursor:pointer;
-    font-weight:bold;
+.editor-header button {
+    background: linear-gradient(135deg, #2563eb, var(--neon));
+    border: none;
+    padding: 8px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #000;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     transition: all 0.2s ease-in-out;
 }
 
-.editor-header button:hover{
-    box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff55;
-    transform: scale(1.05);
+.editor-header button i {
+    font-size: 0.85rem;
 }
 
-.editor{
-    display:flex;
-    height:400px;
+.editor-header button:hover {
+    box-shadow: 0 0 15px rgba(0,234,255,0.7);
+    transform: translateY(-1px);
 }
 
-textarea{
-    width:60%;
-    background:#020617;
-    color:#eaeaea;
-    border:none;
-    padding:18px;
-    font-size:14px;
-    outline:none;
-    resize:none;
-    font-family:monospace;
+.editor {
+    display: flex;
+    height: 360px;
 }
 
-iframe{
-    width:40%;
-    border:none;
-    background:#1a1a1a;
+.editor textarea {
+    width: 60%;
+    background: #020617;
+    color: var(--text);
+    border: none;
+    padding: 16px;
+    font-size: 13px;
+    outline: none;
+    resize: none;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.console{
-    background:#020617;
-    padding:10px;
-    font-size:13px;
-    border-top:1px solid rgba(255,255,255,0.1);
-    color:#9efcff;
+.editor iframe {
+    width: 40%;
+    border: none;
+    background: #1a1a1a;
+}
+
+.console {
+    background: #020617;
+    padding: 10px 14px;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: #9efcff;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* FOOTER */
-footer{
-    text-align:center;
-    padding:18px 0;
-    border-top:1px solid rgba(255,255,255,0.08);
-    font-family:Orbitron, monospace;
-    font-size:0.8rem;
-    letter-spacing:2px;
-    color:#aaa;
+footer {
+    margin-top: 100px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.6;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-align: center;
 }
 
-footer span{color:var(--neon);}
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,234,255,0.3);
+    }
+    
+    .main {
+        margin-left: 0;
+        padding: 40px 30px;
+    }
+    
+    .page-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .editor {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .editor textarea,
+    .editor iframe {
+        width: 100%;
+        height: 240px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-<div class="logo-container">
-    <div class="logo-text">LOGIC SPARK</div>
-    <div class="tagline">Ignite Logic, Build Smarter</div>
-</div>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="webdev.html">Web Development</a></li>
-<li><a class="active href="embedded.html>Embedded Coding</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</nav>
+<div class="sidebar">
+    <div class="logo">
+        <h1>LOGIC SPARK</h1>
+        <span>IGNITE LOGIC • BUILD SMARTER</span>
+    </div>
 
-<div class="container">
-
-<h1>EMBEDDED CODING — COMPLETE ROADMAP</h1>
-<p>Master embedded systems programming from Arduino basics to advanced RTOS and IoT projects. Each level includes production-ready code examples and hardware debugging tips.</p>
-
-<!-- BASIC LEVEL -->
-<h2>LEVEL 1 — BASIC</h2>
-
-<div class="card">
-<div class="card-level">BEGINNER</div>
-<div class="card-title">LED Blink & GPIO Control</div>
-<div class="card-desc">
-Control microcontroller GPIO pins to blink LEDs and drive basic outputs. Essential first step for hardware programming.
-</div>
-<ul class="card-skills">
-<li>Configure pins as INPUT/OUTPUT using pinMode()</li>
-<li>Digital output control with digitalWrite(HIGH/LOW)</li>
-<li>Timing control using delay() and millis()</li>
-<li>Understand microcontroller pin specifications</li>
-<li>Calculate resistor values for safe current limiting</li>
-</ul>
-<div class="code-example">
-<pre><code>const int LED_PIN = 13;
-const int DELAY_MS = 500;
-
-void setup() {
-  pinMode(LED_PIN, OUTPUT);  // Configure pin as output
-  Serial.begin(9600);        // Initialize serial monitor
-}
-
-void loop() {
-  digitalWrite(LED_PIN, HIGH);   // Turn LED ON
-  Serial.println("LED ON");
-  delay(DELAY_MS);
-  
-  digitalWrite(LED_PIN, LOW);    // Turn LED OFF
-  Serial.println("LED OFF");
-  delay(DELAY_MS);
-}</code></pre>
-</div>
-<div class="card-pro">
-Pro Insight: Use 220-330Ω resistors for LEDs. Always check microcontroller datasheet for max current per pin (typically 20mA).</div>
+    <nav class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="webdev.html">WEB DEVELOPMENT</a>
+        <a class="active" href="embedded.html">EMBEDDED CODING</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
 </div>
 
-<div class="card">
-<div class="card-level">BEGINNER</div>
-<div class="card-title">Digital Inputs & Debouncing</div>
-<div class="card-desc">
-Read button presses and switch states with proper debouncing to prevent false triggers.
-</div>
-<ul class="card-skills">
-<li>Read digital inputs using digitalRead()</li>
-<li>Implement software debouncing techniques</li>
-<li>Use internal/external pull-up resistors</li>
-<li>Create reactive systems to user input</li>
-<li>Handle multiple input sources</li>
-</ul>
-<div class="code-example">
-<pre><code>const int BUTTON_PIN = 2;
-const int LED_PIN = 13;
-bool lastButtonState = HIGH;
-unsigned long lastDebounceTime = 0;
-const unsigned long DEBOUNCE_DELAY = 50;
+<div class="main">
+    <div class="page-header">
+        <h2>EMBEDDED CODING</h2>
+        <p>Dive into the world of embedded systems and IoT. Program microcontrollers, build smart devices, and bring hardware to life with code.</p>
+    </div>
 
-void setup() {
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-  pinMode(LED_PIN, OUTPUT);
-}
+    <section class="platforms">
+        <div class="platform-card">
+            <div class="icon"><i class="fas fa-microchip"></i></div>
+            <h3>Arduino Programming</h3>
+            <p>Learn to program Arduino boards for robotics, automation, and IoT projects. Perfect for beginners.</p>
+            <div class="specs">
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>C/C++ Programming</span>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>Digital & Analog I/O</span>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>Sensor Integration</span>
+                </div>
+            </div>
+        </div>
 
-void loop() {
-  bool reading = digitalRead(BUTTON_PIN);
-  
-  if (reading != lastButtonState) {
-    lastDebounceTime = millis();
-  }
-  
-  if ((millis() - lastDebounceTime) > DEBOUNCE_DELAY) {
-    if (reading == LOW) {
-      digitalWrite(LED_PIN, HIGH);  // Button pressed
-    } else {
-      digitalWrite(LED_PIN, LOW);   // Button released
-    }
-  }
-  
-  lastButtonState = reading;
-}</code></pre>
-</div>
-<div class="card-pro">
-Pro Insight: 10kΩ pull-up resistors prevent floating inputs. Debounce delay of 50ms works for most mechanical switches.</div>
-</div>
+        <div class="platform-card">
+            <div class="icon"><i class="fab fa-raspberry-pi"></i></div>
+            <h3>Raspberry Pi</h3>
+            <p>Build powerful embedded Linux systems. Create media centers, servers, and complex automation projects.</p>
+            <div class="specs">
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>Python & C Programming</span>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>Linux Commands</span>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>GPIO Control</span>
+                </div>
+            </div>
+        </div>
 
-<!-- MEDIUM LEVEL -->
-<h2>LEVEL 2 — MEDIUM</h2>
+        <div class="platform-card">
+            <div class="icon"><i class="fas fa-wifi"></i></div>
+            <h3>ESP32 / ESP8266</h3>
+            <p>Master WiFi-enabled microcontrollers for IoT applications. Build connected devices and cloud integration.</p>
+            <div class="specs">
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>WiFi & Bluetooth</span>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>Web Server Setup</span>
+                </div>
+                <div class="spec-item">
+                    <i class="fas fa-circle"></i>
+                    <span>MQTT Protocol</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="card">
-<div class="card-level">INTERMEDIATE</div>
-<div class="card-title">PWM & Analog Sensors</div>
-<div class="card-desc">
-Control brightness, motor speed, and read analog sensors like potentiometers and LDRs.
-</div>
-<ul class="card-skills">
-<li>Generate PWM signals using analogWrite()</li>
-<li>Read analog inputs with analogRead() (0-1023)</li>
-<li>Map sensor values to control parameters</li>
-<li>Filter noisy analog readings</li>
-<li>Drive servos, LEDs, and DC motors</li>
-</ul>
-<div class="code-example">
-<pre><code>const int POT_PIN = A0;
-const int LED_PIN = 9;
-const int LDR_PIN = A1;
+    <section class="projects-section">
+        <h3>Hands-On Projects</h3>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h4>Smart Home Controller</h4>
+                        <span class="difficulty">Intermediate</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Build a WiFi-enabled home automation system to control lights, fans, and appliances remotely.</p>
+                    <div class="project-tags">
+                        <span class="tag">ESP8266</span>
+                        <span class="tag">Relay Control</span>
+                        <span class="tag">Mobile App</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-clock"></i> 8 hours</span>
+                        <span><i class="fas fa-users"></i> 1.2K completed</span>
+                    </div>
+                </div>
+            </div>
 
-void setup() {
-  pinMode(LED_PIN, OUTPUT);
-  Serial.begin(9600);
-}
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h4>Weather Station</h4>
+                        <span class="difficulty">Beginner</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Create an Arduino-based weather station that measures temperature, humidity, and displays data on LCD.</p>
+                    <div class="project-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">DHT Sensor</span>
+                        <span class="tag">LCD Display</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-clock"></i> 4 hours</span>
+                        <span><i class="fas fa-users"></i> 2.5K completed</span>
+                    </div>
+                </div>
+            </div>
 
-void loop() {
-  int potValue = analogRead(POT_PIN);      // 0-1023
-  int ldrValue = analogRead(LDR_PIN);      // Light sensor
-  
-  // Map potentiometer to PWM (0-255)
-  int brightness = map(potValue, 0, 1023, 0, 255);
-  analogWrite(LED_PIN, brightness);
-  
-  Serial.print("Pot: "); Serial.print(potValue);
-  Serial.print(" | LDR: "); Serial.print(ldrValue);
-  Serial.print(" | PWM: "); Serial.println(brightness);
-  
-  delay(100);
-}</code></pre>
-</div>
-<div class="card-pro">
-Pro Insight: PWM frequency ~490Hz on most Arduino pins. Use map() function for clean value scaling.</div>
-</div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h4>Line Following Robot</h4>
+                        <span class="difficulty">Intermediate</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Build an autonomous robot that follows a black line using IR sensors and motor control.</p>
+                    <div class="project-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">IR Sensors</span>
+                        <span class="tag">Motor Driver</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-clock"></i> 12 hours</span>
+                        <span><i class="fas fa-users"></i> 980 completed</span>
+                    </div>
+                </div>
+            </div>
 
-<div class="card">
-<div class="card-level">INTERMEDIATE</div>
-<div class="card-title">Timers & Non-Blocking Code</div>
-<div class="card-desc">
-Replace delay() with millis() for responsive, multi-tasking applications.
-</div>
-<ul class="card-skills">
-<li>Non-blocking timing using millis()</li>
-<li>Multiple independent timed events</li>
-<li>State machines for complex behaviors</li>
-<li>Hardware/software timers</li>
-<li>Avoid blocking the main loop</li>
-</ul>
-<div class="code-example">
-<pre><code>const int LED1_PIN = 13;
-const int LED2_PIN = 12;
-unsigned long previousMillis1 = 0;
-unsigned long previousMillis2 = 0;
-const long interval1 = 1000;
-const long interval2 = 1500;
-bool led1State = false;
-bool led2State = false;
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h4>IoT Security System</h4>
+                        <span class="difficulty">Advanced</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Design a complete security system with motion detection, camera integration, and cloud notifications.</p>
+                    <div class="project-tags">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag">PIR Sensor</span>
+                        <span class="tag">Cloud Storage</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-clock"></i> 20 hours</span>
+                        <span><i class="fas fa-users"></i> 450 completed</span>
+                    </div>
+                </div>
+            </div>
 
-void setup() {
-  pinMode(LED1_PIN, OUTPUT);
-  pinMode(LED2_PIN, OUTPUT);
-}
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h4>Bluetooth Speaker</h4>
+                        <span class="difficulty">Beginner</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Create a wireless Bluetooth speaker system with volume control and audio playback features.</p>
+                    <div class="project-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">Bluetooth Module</span>
+                        <span class="tag">Amplifier</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-clock"></i> 6 hours</span>
+                        <span><i class="fas fa-users"></i> 1.8K completed</span>
+                    </div>
+                </div>
+            </div>
 
-void loop() {
-  unsigned long currentMillis = millis();
-  
-  // LED 1 - 1 second interval
-  if (currentMillis - previousMillis1 >= interval1) {
-    previousMillis1 = currentMillis;
-    led1State = !ledState;
-    digitalWrite(LED1_PIN, led1State);
-  }
-  
-  // LED 2 - 1.5 second interval (runs simultaneously)
-  if (currentMillis - previousMillis2 >= interval2) {
-    previousMillis2 = currentMillis;
-    led2State = !led2State;
-    digitalWrite(LED2_PIN, led2State);
-  }
-}</code></pre>
-</div>
-<div class="card-pro">
-Pro Insight: millis() overflows after ~49 days but works fine (Arduino unsigned long math handles it).</div>
-</div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h4>Plant Watering System</h4>
+                        <span class="difficulty">Intermediate</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p>Automate plant care with soil moisture sensors and automated watering based on real-time data.</p>
+                    <div class="project-tags">
+                        <span class="tag">ESP32</span>
+                        <span class="tag">Soil Sensor</span>
+                        <span class="tag">Water Pump</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-clock"></i> 10 hours</span>
+                        <span><i class="fas fa-users"></i> 750 completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ADVANCED LEVEL -->
-<h2>LEVEL 3 — ADVANCED</h2>
+    <section class="resources">
+        <h3>Learning Resources</h3>
+        <div class="resource-list">
+            <div class="resource-item">
+                <i class="fas fa-book"></i>
+                <span>Datasheet Library</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-code"></i>
+                <span>Code Examples</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-video"></i>
+                <span>Video Tutorials</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-tools"></i>
+                <span>Circuit Diagrams</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-comments"></i>
+                <span>Community Forum</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Component Guide</span>
+            </div>
+        </div>
+    </section>
 
-<div class="card">
-<div class="card-level">ADVANCED</div>
-<div class="card-title">Serial Communication & Protocols</div>
-<div class="card-desc">
-Master UART, I2C, SPI communication between devices and sensors.
-</div>
-<ul class="card-skills">
-<li>UART serial communication (Serial, SoftwareSerial)</li>
-<li>I2C master/slave communication (Wire library)</li>
-<li>SPI high-speed communication</li>
-<li>Protocol debugging and error handling</li>
-<li>Multi-device communication networks</li>
-</ul>
-<div class="code-example">
-<pre><code>#include <Wire.h>
-#define I2C_SLAVE_ADDRESS 0x04
+    <!-- PRACTICE ZONE – EMBEDDED SIMULATOR -->
+    <section class="practice-section">
+        <h3>Practice Zone – Embedded Simulator</h3>
+        <p>Experiment with embedded C/C++ logic before uploading to your board. Edit the code, run the simulation, and review the highlighted logic output on the right.</p>
 
-void setup() {
-  Wire.begin(I2C_SLAVE_ADDRESS);  // Start I2C as slave
-  Wire.onReceive(receiveEvent);
-  Wire.onRequest(requestEvent);
-  Serial.begin(9600);
-}
+        <div class="editor-box">
+            <div class="editor-header">
+                <span>Embedded Code Editor</span>
+                <button onclick="runEmbeddedCode()">
+                    <i class="fas fa-play"></i> RUN SIMULATION
+                </button>
+            </div>
 
-void loop() {
-  delay(100);
-}
-
-// Called when data received from master
-void receiveEvent(int bytes) {
-  while (Wire.available()) {
-    char c = Wire.read();
-    Serial.print("Received: ");
-    Serial.println(c);
-  }
-}
-
-// Called when master requests data
-void requestEvent() {
-  Wire.write("Hello Master!");
-}</code></pre>
-</div>
-<div class="card-pro">
-Pro Insight: I2C addresses: 0x03-0x77. Use pull-up resistors (4.7kΩ) on SDA/SCL lines.</div>
-</div>
-
-<div class="card">
-<div class="card-level">ADVANCED</div>
-<div class="card-title">RTOS & IoT Integration</div>
-<div class="card-desc">
-Build professional embedded systems with FreeRTOS and cloud connectivity.
-</div>
-<ul class="card-skills">
-<li>Task creation and scheduling (FreeRTOS)</li>
-<li>Inter-task communication (queues, semaphores)</li>
-<li>WiFi connectivity (ESP32/ESP8266)</li>
-<li>MQTT protocol for IoT</li>
-<li>OTA firmware updates</li>
-</ul>
-<div class="card-pro">
-Pro Insight: ESP32 has dual-core + FreeRTOS built-in. Use Arduino IDE with ESP32 board package.</div>
-</div>
-
-<!-- NEW SECTION -->
-<div class="card">
-<div class="card-level">ADVANCED</div>
-<div class="card-title">Interrupts & Real-Time Control</div>
-<div class="card-desc">
-Handle hardware events instantly with interrupt service routines (ISRs).
-</div>
-<ul class="card-skills">
-<li>External pin interrupts (RISING/FALLING)</li>
-<li>Timer interrupts for precise timing</li>
-<li>ISR best practices (keep short, no delay())</li>
-<li>Interrupt priority management</li>
-<li>Encoder reading and motor control</li>
-</ul>
-<div class="code-example">
-<pre><code>volatile bool buttonPressed = false;
-const int BUTTON_PIN = 2;
-const int LED_PIN = 13;
-
-void setup() {
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-  pinMode(LED_PIN, OUTPUT);
-  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), 
-                  buttonISR, FALLING);
-}
-
-void loop() {
-  if (buttonPressed) {
-    digitalWrite(LED_PIN, !digitalRead(LED_PIN));
-    buttonPressed = false;  // Clear flag
-  }
-}
-
-void buttonISR() {
-  buttonPressed = true;  // Set flag only (ISR must be fast)
-}</code></pre>
-</div>
-<div class="card-pro">
-Pro Insight: ISRs should only set flags. Never use Serial.print() or delay() in ISRs.</div>
-</div>
-
-<!-- PRACTICE ZONE -->
-<h2>PRACTICE ZONE — EMBEDDED SIMULATOR</h2>
-
-<p>Practice embedded C/C++ code with simulated serial output. Perfect for testing logic before hardware deployment.</p>
-
-<div class="editor-box">
-  <div class="editor-header">
-    <span>Embedded Code Simulator</span>
-    <button onclick="runCode()">RUN SIMULATION</button>
-  </div>
-
-  <div class="editor">
-    <textarea id="code">// Traffic Light Controller Simulation
-// Try modifying timing and adding pedestrian crossing!
+            <div class="editor">
+<textarea id="embedded-code">// Traffic Light Controller Simulation
+// Try changing timings or messages.
 
 const int RED_PIN = 13;
 const int YELLOW_PIN = 12;
@@ -670,29 +845,27 @@ void advanceState() {
       break;
   }
 }</textarea>
+                <iframe id="embedded-output"></iframe>
+            </div>
 
-    <iframe id="output"></iframe>
-  </div>
+            <div class="console" id="embedded-console">Console ready... Click RUN SIMULATION to visualise the traffic light logic.</div>
+        </div>
+    </section>
 
-  <div class="console" id="console">Console ready... Try the traffic light controller simulation!</div>
+    <footer>
+        © 2025 LOGIC SPARK - ALL RIGHTS RESERVED
+    </footer>
 </div>
-
-</div>
-
-<footer>
-© 2025 <span>LOGIC SPARK</span> — IGNITE LOGIC. BUILD SMARTER.
-</footer>
 
 <script>
-function runCode(){
-  const code = document.getElementById("code").value;
-  const output = document.getElementById("output");
-  const consoleBox = document.getElementById("console");
-  
+function runEmbeddedCode(){
+  const code = document.getElementById("embedded-code").value;
+  const output = document.getElementById("embedded-output");
+  const consoleBox = document.getElementById("embedded-console");
+
   consoleBox.innerHTML = "🔌 Simulating embedded execution...<br>";
-  
+
   try {
-    // Create simulated output with syntax highlighting
     const highlighted = code
       .replace(/void setup/g, '<span style="color:#00ff99">void setup</span>')
       .replace(/void loop/g, '<span style="color:#00ff99">void loop</span>')
@@ -701,27 +874,23 @@ function runCode(){
       .replace(/delay/g, '<span style="color:#ff6600">delay</span>')
       .replace(/Serial/g, '<span style="color:#66ccff">Serial</span>')
       .replace(/\n/g, '<br>');
-    
+
     output.srcdoc = `
       <html style="background:#1a1a1a;color:#eaeaea;font-family:monospace;padding:20px;">
-        <div style="background:#020617;padding:20px;border-radius:10px;height:350px;overflow:auto;">
+        <div style="background:#020617;padding:20px;border-radius:10px;height:320px;overflow:auto;">
           <pre style="white-space:pre-wrap;font-size:14px;line-height:1.4;">${highlighted}</pre>
         </div>
         <div style="margin-top:10px;color:#00ff99;font-weight:bold;">
-          ✔ SIMULATION COMPLETE - Ready for Arduino/ESP32 upload!
+          ✔ SIMULATION COMPLETE - Logic ready for Arduino/ESP32 upload!
         </div>
       </html>`;
     
-    consoleBox.innerHTML = "✔ Code compiled successfully | 🚀 Ready for hardware deployment | 📡 Serial Monitor simulation active";
+    consoleBox.innerHTML = "Code highlighted successfully | Review the logic above before flashing your board.";
   } catch(err) {
-    consoleBox.innerHTML = "✖ Syntax Error: " + err.message;
+    consoleBox.innerHTML = " Syntax Error: " + err.message;
   }
 }
 </script>
 
 </body>
 </html>
-
-
-
-
