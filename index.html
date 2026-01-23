@@ -1,229 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logic Spark | Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logic Spark | Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+    --bg: #000;
+    --panel: rgba(255,255,255,0.06);
+    --neon: #00eaff;
+    --neon-pink: #ff006e;
+    --text: #eaeaea;
+}
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        :root {
-            --dark-blue: #000000;
-            --medium-blue: rgba(0, 0, 0, 0.7);
-            --light-blue: #eaeaea;
-            --accent: #6aa9ff;
-            --neon-blue: #00eaff;
-            --glass: rgba(255, 255, 255, 0.06);
-        }
-
-        body {
+* {
     margin: 0;
-    min-height: 100vh;
-    background: #000;
-    background-image:
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================= ANIMATED BACKGROUND ================= */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+body::before {
+    background:
         linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    color: #eaeaea;
-    font-family: 'Rajdhani', sans-serif;
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
 }
 
-nav {
+body::after {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(0,234,255,0.15), transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255,0,110,0.12), transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes gridMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(60px); }
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 60px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
+/* ================= LEFT SIDEBAR NAV ================= */
+.sidebar {
+    width: 280px;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(0,234,255,0.3);
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
 
+.logo {
+    text-align: center;
+}
 
-        .logo-text {
-    font-family: 'Orbitron', sans-serif;
+.logo h1 {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 2rem;
-    color: #00f5ff;
-    letter-spacing: 6px;
-    text-shadow: 
-        0 0 5px #00f5ff,
-        0 0 10px #00f5ff,
-        0 0 20px #00f5ff,
-        0 0 40px #00f5ff,
-        0 0 60px #00f5ff,
-        0 0 80px #00f5ff;
+    letter-spacing: 4px;
+    color: var(--neon);
+    text-shadow: 0 0 20px var(--neon);
+    margin-bottom: 8px;
 }
 
-.tagline {
-    font-size: 0.75rem;
-    color: #00f5ffaa;
+.logo span {
+    font-size: 0.7rem;
     letter-spacing: 2px;
-    text-shadow:
-        0 0 2px #00f5ff,
-        0 0 4px #00f5ff,
-        0 0 6px #00f5ff;
-    margin-top: 3px;
+    color: rgba(0,234,255,0.7);
+    display: block;
 }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-        nav a {
-            text-decoration: none;
-            color: var(--light-blue);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
 
-        nav a:hover,
-        nav a.active {
-            color: var(--neon-blue);
-            text-shadow: 0 0 8px var(--neon-blue);
-        }
+.nav-links a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--neon);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+}
 
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 140px 20px;
-            animation: fadeIn 1s ease-out;
-        }
+.nav-links a:hover::before,
+.nav-links a.active::before {
+    transform: scaleY(1);
+}
 
-        .hero h1 {
-            font-family: Orbitron;
-            font-size: 4rem;
-            background: linear-gradient(to bottom, #fff, var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(0,234,255,0.12);
+    color: var(--neon);
+    box-shadow: inset 0 0 20px rgba(0,234,255,0.2);
+}
 
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.85;
-        }
+/* ================= MAIN CONTENT ================= */
+.main {
+    margin-left: 280px;
+    flex: 1;
+    padding: 80px 70px;
+    animation: slideIn 0.8s ease-out;
+}
 
-        .cta {
-            padding: 15px 40px;
-            border: 2px solid var(--neon-blue);
-            color: var(--neon-blue);
-            text-decoration: none;
-            font-family: Orbitron;
-            letter-spacing: 2px;
-            border-radius: 6px;
-            transition: 0.4s;
-            box-shadow: 0 0 18px rgba(0,234,255,0.3);
-        }
+/* HERO SECTION */
+.hero {
+    margin-bottom: 80px;
+}
 
-        .cta:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 35px var(--neon-blue);
-            transform: scale(1.05);
-        }
+.hero h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 4rem;
+    background: linear-gradient(135deg, #fff 0%, var(--neon) 50%, var(--neon-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
 
-        /* FEATURES */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 80px;
-            padding: 20px;
-        }
+.hero p {
+    max-width: 650px;
+    font-size: 1.3rem;
+    opacity: 0.85;
+    margin-bottom: 45px;
+    line-height: 1.6;
+}
 
-        .card {
-            background: var(--glass);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.4s;
-            animation: fadeIn 1.2s ease-out;
-        }
+/* CTA BUTTON */
+.cta {
+    display: inline-block;
+    padding: 16px 48px;
+    border: 2px solid var(--neon);
+    color: var(--neon);
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+}
 
-        .card:hover {
-            background: rgba(0,234,255,0.06);
-            border-color: var(--neon-blue);
-            transform: translateY(-10px);
-        }
+.cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--neon);
+    transition: left 0.4s;
+    z-index: -1;
+}
 
-        .card i {
-            font-size: 3rem;
-            color: var(--neon-blue);
-            margin-bottom: 20px;
-            text-shadow: 0 0 18px rgba(0,234,255,0.5);
-        }
+.cta:hover::before {
+    left: 0;
+}
 
-        .card h3 {
-            font-family: Orbitron;
-            letter-spacing: 2px;
-        }
+.cta:hover {
+    color: #000;
+    box-shadow: 0 0 40px var(--neon);
+    transform: translateY(-3px);
+}
 
-        .card p {
-            opacity: 0.75;
-            font-size: 1.1rem;
-        }
+/* FEATURES GRID */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-bottom: 80px;
+}
 
-        footer {
-            margin-top: auto;
-            padding: 30px;
-            text-align: center;
-            background: rgba(0,0,0,0.6);
-            border-top: 1px solid rgba(255,255,255,0.08);
-            letter-spacing: 2px;
-        }
-    </style>
+.card {
+    background: var(--panel);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,234,255,0.1), transparent 60%);
+    transform: scale(0);
+    transition: transform 0.6s;
+}
+
+.card:hover::before {
+    transform: scale(1);
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    border-color: var(--neon);
+    background: rgba(0,234,255,0.08);
+    box-shadow: 0 10px 40px rgba(0,234,255,0.3);
+}
+
+.card i {
+    font-size: 3rem;
+    color: var(--neon);
+    margin-bottom: 24px;
+    text-shadow: 0 0 25px var(--neon);
+    animation: float 3s ease-in-out infinite;
+}
+
+.card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    font-size: 1.3rem;
+}
+
+.card p {
+    opacity: 0.8;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* STATS SECTION */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin: 80px 0;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(0,234,255,0.2);
+    transition: all 0.3s;
+}
+
+.stat-box:hover {
+    background: rgba(0,234,255,0.08);
+    border-color: var(--neon);
+    transform: scale(1.05);
+}
+
+.stat-box h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    color: var(--neon);
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 100px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.6;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,234,255,0.3);
+    }
+    
+    .main {
+        margin-left: 0;
+        padding: 40px 30px;
+    }
+    
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<nav>
-    <div>
-        <div class="logo-text">LOGIC SPARK</div>
-        <div class="tagline">Ignite Logic, Build Smarter</div>
+<!-- LEFT SIDEBAR NAV -->
+<div class="sidebar">
+    <div class="logo">
+        <h1>LOGIC SPARK</h1>
+        <span>IGNITE LOGIC • BUILD SMARTER</span>
     </div>
-    <ul>
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="webdev.html">Web Development</a></li>
-        <li><a href="embedded.html">Embedded Coding</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
 
-<div class="hero">
-    <h1>CHECK & DEVELOP YOUR CODE</h1>
-    <p>Generate smart logic and verify code accuracy in seconds.</p>
-    <a href="embedded.html" class="cta">START LEARNING</a>
+    <nav class="nav-links">
+        <a class="active" href="index.html">HOME</a>
+        <a href="webdev.html">WEB DEVELOPMENT</a>
+        <a href="embedded.html">EMBEDDED CODING</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
 </div>
 
-<div class="features">
-    <div class="card">
-        <i class="fas fa-code"></i>
-        <h3>CODE CHECKER</h3>
-        <p>Analyze, validate, and optimize your logic with precision.</p>
-    </div>
+<!-- MAIN CONTENT -->
+<div class="main">
+    <section class="hero">
+        <h2>CHECK & DEVELOP<br>YOUR CODE</h2>
+        <p>Generate intelligent logic, validate accuracy, and build smarter systems with Logic Spark. Your journey to mastering code starts here.</p>
+        <a href="#" class="cta">START LEARNING</a>
+    </section>
 
-    <div class="card">
-        <i class="fas fa-gears"></i>
-        <h3>CODE LEARNER</h3>
-        <p>Create structured, reusable code components instantly.</p>
-    </div>
+    <section class="features">
+        <div class="card">
+            <i class="fas fa-code"></i>
+            <h3>CODE CHECKER</h3>
+            <p>Analyze, validate, and optimize your logic with precision and speed. Get instant feedback on your code quality.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-microchip"></i>
+            <h3>CODE LEARNER</h3>
+            <p>Learn web and embedded coding through structured, real-world content designed for rapid skill development.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-rocket"></i>
+            <h3>PROJECT BUILDER</h3>
+            <p>Transform ideas into reality with guided project templates and hands-on development experience.</p>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-box">
+            <h4>500+</h4>
+            <p>Code Tutorials</p>
+        </div>
+        <div class="stat-box">
+            <h4>50K+</h4>
+            <p>Students Learning</p>
+        </div>
+        <div class="stat-box">
+            <h4>98%</h4>
+            <p>Success Rate</p>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 LOGIC SPARK - ALL RIGHTS RESERVED
+    </footer>
 </div>
-
-<footer>
-    © 2025 <span style="color:#00eaff; font-family:Orbitron;">LOGIC SPARK</span> — SMARTER FUTURE
-</footer>
 
 </body>
 </html>
-
-
