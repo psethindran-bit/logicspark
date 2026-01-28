@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Logic Spark | Contact</title>
+<title>Logic Spark | About</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -219,160 +219,170 @@ body {
     line-height: 1.6;
 }
 
-/* CONTACT CONTAINER */
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-bottom: 80px;
-}
-
-/* CONTACT FORM */
-.contact-form {
+/* STORY SECTION */
+.story {
     background: var(--panel);
     padding: 50px;
     border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 60px;
 }
 
-.contact-form h3 {
+.story h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 2rem;
     color: var(--neon);
-    margin-bottom: 30px;
-}
-
-.form-group {
     margin-bottom: 25px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: var(--text);
+.story p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.85;
+    margin-bottom: 20px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 15px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s;
+/* VALUES SECTION */
+.values {
+    margin-bottom: 80px;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--neon);
-    background: rgba(0,234,255,0.08);
-    box-shadow: 0 0 20px rgba(0,234,255,0.2);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 150px;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: transparent;
-    border: 2px solid var(--neon);
-    color: var(--neon);
+.values h3 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.4s;
-    position: relative;
-    overflow: hidden;
+    font-size: 2rem;
+    color: var(--neon);
+    margin-bottom: 40px;
+    text-align: center;
 }
 
-.submit-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--neon);
-    transition: left 0.4s;
-    z-index: -1;
-}
-
-.submit-btn:hover::before {
-    left: 0;
-}
-
-.submit-btn:hover {
-    color: #000;
-    box-shadow: 0 0 30px var(--neon);
-    transform: translateY(-3px);
-}
-
-/* CONTACT INFO */
-.contact-info {
-    display: flex;
-    flex-direction: column;
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
 
-.info-card {
+.value-card {
     background: var(--panel);
-    padding: 35px;
+    padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.08);
-    transition: all 0.3s;
+    text-align: center;
+    transition: all 0.4s;
 }
 
-.info-card:hover {
+.value-card:hover {
+    transform: translateY(-10px);
     border-color: var(--neon);
     background: rgba(0,234,255,0.08);
-    transform: translateX(10px);
+    box-shadow: 0 10px 40px rgba(0,234,255,0.3);
 }
 
-.info-card i {
-    font-size: 2.5rem;
+.value-card i {
+    font-size: 3rem;
     color: var(--neon);
     margin-bottom: 20px;
 }
 
-.info-card h4 {
+.value-card h4 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.3rem;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     letter-spacing: 1px;
 }
 
-.info-card p {
+.value-card p {
     opacity: 0.8;
     line-height: 1.6;
-    font-size: 1.05rem;
 }
 
-.info-card a {
+/* TEAM SECTION */
+.team {
+    margin-bottom: 80px;
+}
+
+.team h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
     color: var(--neon);
-    text-decoration: none;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+}
+
+.team-card {
+    background: var(--panel);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    transition: all 0.4s;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon);
+    background: rgba(0,234,255,0.08);
+}
+
+.team-card .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon), var(--neon-pink));
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #000;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 0 30px rgba(0,234,255,0.5);
+}
+
+.team-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.team-card .role {
+    color: var(--neon);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.team-card p {
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--text);
+    font-size: 1.2rem;
     transition: all 0.3s;
 }
 
-.info-card a:hover {
-    text-shadow: 0 0 10px var(--neon);
+.social-links a:hover {
+    color: var(--neon);
+    transform: scale(1.2);
 }
 
-/* SOCIAL SECTION */
-.social-section {
+/* MISSION SECTION */
+.mission {
     background: linear-gradient(135deg, rgba(0,234,255,0.1), rgba(255,0,110,0.1));
     padding: 60px;
     border-radius: 20px;
@@ -381,85 +391,19 @@ body {
     margin-bottom: 80px;
 }
 
-.social-section h3 {
+.mission h3 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--neon);
     margin-bottom: 25px;
 }
 
-.social-section p {
-    font-size: 1.1rem;
-    opacity: 0.85;
-    margin-bottom: 35px;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.social-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: var(--panel);
-    border: 2px solid rgba(0,234,255,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: var(--neon);
-    transition: all 0.4s;
-    text-decoration: none;
-}
-
-.social-icon:hover {
-    background: var(--neon);
-    color: #000;
-    border-color: var(--neon);
-    transform: translateY(-10px) scale(1.1);
-    box-shadow: 0 10px 30px rgba(0,234,255,0.5);
-}
-
-/* FAQ SECTION */
-.faq-section {
-    margin-bottom: 80px;
-}
-
-.faq-section h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    color: var(--neon);
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.faq-item {
-    background: var(--panel);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 20px;
-    transition: all 0.3s;
-}
-
-.faq-item:hover {
-    border-color: var(--neon);
-    background: rgba(0,234,255,0.08);
-}
-
-.faq-item h4 {
-    font-family: 'Space Grotesk', sans-serif;
+.mission p {
     font-size: 1.2rem;
-    margin-bottom: 12px;
-    color: var(--neon);
-}
-
-.faq-item p {
-    opacity: 0.8;
-    line-height: 1.7;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
 }
 
 footer {
@@ -470,12 +414,6 @@ footer {
     letter-spacing: 2px;
     font-size: 0.9rem;
     text-align: center;
-}
-
-@media (max-width: 968px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (max-width: 768px) {
@@ -496,7 +434,7 @@ footer {
         font-size: 2.5rem;
     }
     
-    .contact-form, .social-section {
+    .story, .mission {
         padding: 30px;
     }
 }
@@ -524,107 +462,98 @@ footer {
         <a href="index.html">HOME</a>
         <a href="webdev.html">WEB DEVELOPMENT</a>
         <a href="embedded.html">EMBEDDED CODING</a>
-        <a href="about.html">ABOUT</a>
-        <a class="active" href="contact.html">CONTACT</a>
+        <a class="active" href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
     </nav>
 </div>
 
 <div class="main">
     <div class="page-header">
-        <h2>GET IN TOUCH</h2>
-        <p>Have questions? Want to collaborate & Learn? We'd love to hear from you. Reach out and let's build & learn something amazing together.</p>
+        <h2>ABOUT LOGIC SPARK</h2>
+        <p>Empowering developers to build the future, one line of code at a time.</p>
     </div>
 
-    <div class="contact-container">
-        <div class="contact-form">
-            <h3>Send Us a Message</h3>
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" placeholder="Enter your name" required>
+    <section class="story">
+        <h3>Our Story</h3>
+        <p>Logic Spark was founded with a simple yet powerful vision: to make coding education accessible, practical, and engaging for everyone. We believe that in today's digital age, programming is not just a skill—it's a superpower that can transform ideas into reality.</p>
+        
+        <p>What started as a small initiative to help students learn web development has evolved into a comprehensive platform covering everything from frontend technologies to embedded systems. Our community has grown to thousands of learners worldwide, each bringing their unique perspectives and passion for technology.</p>
+        
+        <p>We're not just about teaching syntax and frameworks. We focus on building problem-solving skills, fostering creativity, and preparing our students for real-world challenges. Every tutorial, every project, and every line of code is designed with one goal: to help you become a confident, capable developer.</p>
+    </section>
+
+    <section class="values">
+        <h3>Our Core Values</h3>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-lightbulb"></i>
+                <h4>Innovation</h4>
+                <p>We constantly evolve our curriculum to reflect the latest technologies and industry trends.</p>
             </div>
 
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="your.email@example.com" required>
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h4>Accessibility</h4>
+                <p>Quality education should be available to everyone, regardless of background or experience.</p>
             </div>
 
-            <div class="form-group">
-                <label>Subject</label>
-                <select required>
-                    <option value="">Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="course">Course Information</option>
-                    <option value="support">Technical Support</option>
-                    <option value="partnership">Partnership</option>
-                    <option value="feedback">Feedback</option>
-                </select>
+            <div class="value-card">
+                <i class="fas fa-users"></i>
+                <h4>Community</h4>
+                <p>Learning is better together. We foster a supportive environment where everyone can grow.</p>
             </div>
 
-            <div class="form-group">
-                <label>Message</label>
-                <textarea placeholder="Tell us how we can help you..." required></textarea>
+            <div class="value-card">
+                <i class="fas fa-trophy"></i>
+                <h4>Excellence</h4>
+                <p>We maintain the highest standards in our content, ensuring every lesson adds real value.</p>
             </div>
-
-            <button class="submit-btn">SEND MESSAGE</button>
-        </div>
-
-        <div class="contact-info">
-            <div class="info-card">
-                <i class="fas fa-envelope"></i>
-                <h4>Email Us</h4>
-                <p><a href="mailto:contact@logicspark.com">contact@logicspark.com</a></p>
-                <p><a href="mailto:support@logicspark.com">support@logicspark.com</a></p>
-            </div>
-
-            <div class="info-card">
-                <i class="fas fa-phone"></i>
-                <h4>Call Us</h4>
-                <p>+1 (555) 123-4567</p>
-                <p>Mon - Fri, 9:00 AM - 6:00 PM EST</p>
-            </div>
-
-            <div class="info-card">
-                <i class="fas fa-map-marker-alt"></i>
-                <h4>Visit Us</h4>
-                <p>123 Tech Avenue<br>Innovation District<br>San Francisco, CA 94102</p>
-            </div>
-        </div>
-    </div>
-
-    <section class="social-section">
-        <h3>Connect With Us</h3>
-        <p>Follow us on social media for updates, tips, and coding inspiration</p>
-        <div class="social-icons">
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
         </div>
     </section>
 
-    <section class="faq-section">
-        <h3>Frequently Asked Questions</h3>
-        
-        <div class="faq-item">
-            <h4>How quickly will I receive a response?</h4>
-            <p>We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please call us directly.</p>
-        </div>
+    <section class="mission">
+        <h3>Our Mission</h3>
+        <p>To ignite the spark of creativity in every aspiring developer and provide them with the tools, knowledge, and confidence to build innovative solutions that shape the future. We're committed to breaking down barriers in tech education and creating a world where anyone with passion and dedication can master the art of coding.</p>
+    </section>
 
-        <div class="faq-item">
-            <h4>Do you offer one-on-one mentorship?</h4>
-            <p>Yes! We offer personalized mentorship programs for students who want more focused guidance. Contact us to learn more about availability and pricing.</p>
-        </div>
+    <section class="team">
+        <h3>Meet The Team</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="avatar">PSE</div>
+                <h4>P Srinivasan Ethindran</h4>
+                <p class="role">Project Lead & Web Developer</p>
+                <p>Full-stack developer with 10+ years of experience in web technologies and a passion for teaching.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
 
-        <div class="faq-item">
-            <h4>Can I suggest a course topic?</h4>
-            <p>Absolutely! We love hearing from our community. Send us your course suggestions and we'll do our best to create content that meets your learning needs.</p>
-        </div>
+            <div class="team-card">
+                <div class="avatar">AS</div>
+                <h4>Arnav Siddartha</h4>
+                <p class="role">Graphic Designer</p>
+                <p>Hardware engineer specializing in IoT and embedded programming with real-world industry experience.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
 
-        <div class="faq-item">
-            <h4>Are you looking for instructors or contributors?</h4>
-            <p>We're always interested in connecting with passionate educators and developers. If you'd like to contribute content or join our team, please reach out with your background and ideas.</p>
+            <div class="team-card">
+                <div class="avatar">SCA</div>
+                <h4>Sriram Chitambaram Adaikappan</h4>
+                <p class="role">Content Developer & Brand Designer</p>
+                <p>Creative technologist focused on making complex concepts simple and engaging through visual learning.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -659,6 +588,7 @@ window.addEventListener("load", function(){
 
 });
 </script>
+
 
 </body>
 </html>
