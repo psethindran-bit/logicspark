@@ -6,6 +6,7 @@
 <title>Logic Spark | Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 :root {
     --bg: #000;
@@ -19,6 +20,46 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* ================= PRELOADER ================= */
+#preloader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+/* USER LOADER */
+.loading-wave {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.loading-bar {
+  width: 20px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #3498db;
+  border-radius: 5px;
+  animation: loading-wave-animation 1s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(2) { animation-delay: 0.1s; }
+.loading-bar:nth-child(3) { animation-delay: 0.2s; }
+.loading-bar:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes loading-wave-animation {
+  0% { height: 10px; }
+  50% { height: 50px; }
+  100% { height: 10px; }
 }
 
 /* ================= ANIMATED BACKGROUND ================= */
@@ -61,14 +102,8 @@ body::after {
 }
 
 @keyframes slideIn {
-    from { 
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 body {
@@ -219,9 +254,7 @@ body {
     z-index: -1;
 }
 
-.cta:hover::before {
-    left: 0;
-}
+.cta:hover::before { left: 0; }
 
 .cta:hover {
     color: #000;
@@ -245,29 +278,6 @@ body {
     transition: all 0.4s;
     position: relative;
     overflow: hidden;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0,234,255,0.1), transparent 60%);
-    transform: scale(0);
-    transition: transform 0.6s;
-}
-
-.card:hover::before {
-    transform: scale(1);
-}
-
-.card:hover {
-    transform: translateY(-12px);
-    border-color: var(--neon);
-    background: rgba(0,234,255,0.08);
-    box-shadow: 0 10px 40px rgba(0,234,255,0.3);
 }
 
 .card i {
@@ -308,12 +318,6 @@ body {
     transition: all 0.3s;
 }
 
-.stat-box:hover {
-    background: rgba(0,234,255,0.08);
-    border-color: var(--neon);
-    transform: scale(1.05);
-}
-
 .stat-box h4 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 3rem;
@@ -336,30 +340,20 @@ footer {
     font-size: 0.9rem;
     text-align: center;
 }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid rgba(0,234,255,0.3);
-    }
-    
-    .main {
-        margin-left: 0;
-        padding: 40px 30px;
-    }
-    
-    .hero h2 {
-        font-size: 2.5rem;
-    }
-}
 </style>
 </head>
 
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="loading-wave">
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+    </div>
+</div>
 
 <!-- LEFT SIDEBAR NAV -->
 <div class="sidebar">
@@ -382,7 +376,7 @@ footer {
     <section class="hero">
         <h2>CHECK & DEVELOP<br>YOUR CODE</h2>
         <p>Generate intelligent logic, validate accuracy, and build smarter systems with Logic Spark. Your journey to mastering code starts here.</p>
-        <a href="embedded.html" class="cta">START LEARNING</a>
+        <a href="#" class="cta">START LEARNING</a>
     </section>
 
     <section class="features">
@@ -425,6 +419,33 @@ footer {
     </footer>
 </div>
 
+<!-- PRELOADER SCRIPT (PLAYS FULLY) -->
+<script>
+window.addEventListener("load", function(){
+
+    const loader = document.getElementById("preloader");
+
+    /* 
+      loading-wave = 1s animation
+      max delay = 0.3s
+      full wave ≈ 1.3s
+      we play 2 full cycles = ~2.6s
+    */
+
+    const FULL_ANIMATION_TIME = 2600;
+
+    setTimeout(()=>{
+        loader.style.transition = "opacity 0.6s ease";
+        loader.style.opacity = "0";
+
+        setTimeout(()=>{
+            loader.style.display = "none";
+        }, 600);
+
+    }, FULL_ANIMATION_TIME);
+
+});
+</script>
+
 </body>
 </html>
-
