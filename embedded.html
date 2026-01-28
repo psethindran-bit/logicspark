@@ -885,9 +885,9 @@ function runEmbeddedCode(){
         </div>
       </html>`;
     
-    consoleBox.innerHTML = "Code highlighted successfully | Review the logic above before flashing your board.";
+    consoleBox.innerHTML = "✔ Code highlighted successfully |  Review the logic above before flashing your board.";
   } catch(err) {
-    consoleBox.innerHTML = " Syntax Error: " + err.message;
+    consoleBox.innerHTML = "✖ Syntax Error: " + err.message;
   }
 }
 </script>
