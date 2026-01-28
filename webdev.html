@@ -7,6 +7,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+
+    /* ================= PRELOADER ================= */
+#preloader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+/* loading-wave animation */
+.loading-wave {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.loading-bar {
+  width: 20px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #3498db;
+  border-radius: 5px;
+  animation: loading-wave-animation 1s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(2) { animation-delay: 0.1s; }
+.loading-bar:nth-child(3) { animation-delay: 0.2s; }
+.loading-bar:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes loading-wave-animation {
+  0% { height: 10px; }
+  50% { height: 50px; }
+  100% { height: 10px; }
+}
+
+/* [KEEP ALL EXISTING CSS - SAME AS BEFORE] */
 :root {
     --bg: #000;
     --panel: rgba(255,255,255,0.06);
@@ -179,7 +221,6 @@ body {
     line-height: 1.6;
 }
 
-/* LEARNING PATHS */
 .learning-paths {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -194,6 +235,21 @@ body {
     border: 1px solid rgba(255,255,255,0.08);
     transition: all 0.4s;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.path-card::before {
+    content: attr(data-depth);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,234,255,0.2);
+    color: var(--neon);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .path-card:hover {
@@ -238,8 +294,32 @@ body {
     border: 1px solid rgba(0,234,255,0.3);
 }
 
-/* COURSES SECTION */
-.courses-section {
+.learn-more-btn {
+    background: transparent;
+    border: 2px solid var(--neon);
+    color: var(--neon);
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.learn-more-btn:hover {
+    background: var(--neon);
+    color: #000;
+    box-shadow: 0 0 25px var(--neon);
+    transform: translateY(-2px);
+}
+
+.courses-section, .practice-section {
+    /* SAME EXISTING STYLES */
     margin-top: 80px;
 }
 
@@ -306,11 +386,6 @@ body {
     justify-content: space-between;
     font-size: 0.9rem;
     opacity: 0.7;
-}
-
-/* PRACTICE ZONE – LIVE EDITOR */
-.practice-section {
-    margin-top: 80px;
 }
 
 .practice-section h3 {
@@ -408,7 +483,6 @@ body {
     font-family: "JetBrains Mono", ui-monospace, monospace;
 }
 
-/* FOOTER */
 footer {
     margin-top: 100px;
     padding-top: 30px;
@@ -453,6 +527,17 @@ footer {
 
 <body>
 
+    <!-- ================= PRELOADER ================= -->
+<div id="preloader">
+    <div class="loading-wave">
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+    </div>
+</div>
+
+
 <div class="sidebar">
     <div class="logo">
         <h1>LOGIC SPARK</h1>
@@ -475,7 +560,7 @@ footer {
     </div>
 
     <section class="learning-paths">
-        <div class="path-card">
+        <div class="path-card" data-depth="Level 1">
             <div class="icon"><i class="fab fa-html5"></i></div>
             <h3>Frontend Development</h3>
             <p>Create stunning user interfaces with HTML, CSS, and JavaScript. Learn responsive design and modern frameworks.</p>
@@ -485,9 +570,12 @@ footer {
                 <span class="topic-tag">JavaScript</span>
                 <span class="topic-tag">React</span>
             </div>
+            <button class="learn-more-btn" onclick="window.location.href='contact.html'">
+                <i class="fas fa-arrow-right"></i> Dive Deeper
+            </button>
         </div>
 
-        <div class="path-card">
+        <div class="path-card" data-depth="Level 2">
             <div class="icon"><i class="fas fa-server"></i></div>
             <h3>Backend Development</h3>
             <p>Build powerful server-side applications and APIs. Master databases, authentication, and server architecture.</p>
@@ -497,9 +585,12 @@ footer {
                 <span class="topic-tag">SQL</span>
                 <span class="topic-tag">APIs</span>
             </div>
+            <button class="learn-more-btn" onclick="window.location.href='contact.html'">
+                <i class="fas fa-arrow-right"></i> Dive Deeper
+            </button>
         </div>
 
-        <div class="path-card">
+        <div class="path-card" data-depth="Level 3">
             <div class="icon"><i class="fas fa-layer-group"></i></div>
             <h3>Full Stack Development</h3>
             <p>Combine frontend and backend skills to build complete web applications from scratch to deployment.</p>
@@ -508,9 +599,13 @@ footer {
                 <span class="topic-tag">Cloud</span>
                 <span class="topic-tag">DevOps</span>
             </div>
+            <button class="learn-more-btn" onclick="window.location.href='contact.html'">
+                <i class="fas fa-arrow-right"></i> Dive Deeper
+            </button>
         </div>
     </section>
 
+    <!-- [KEEP ALL EXISTING COURSES, PRACTICE ZONE, AND FOOTER SECTIONS EXACTLY THE SAME] -->
     <section class="courses-section">
         <h3>Popular Courses</h3>
         <div class="courses-grid">
@@ -600,7 +695,6 @@ footer {
         </div>
     </section>
 
-    <!-- PRACTICE ZONE – LIVE WEB CODE EDITOR -->
     <section class="practice-section">
         <h3>Practice Zone – Live Web Code Editor</h3>
         <p>Experiment with HTML, CSS, and JavaScript directly in your browser. Edit the code, hit RUN, and see the output update instantly on the right.</p>
@@ -683,7 +777,7 @@ footer {
     </section>
 
     <footer>
-        © 2025 LOGIC SPARK - ALL RIGHTS RESERVED
+        © 2026 LOGIC SPARK - ALL RIGHTS RESERVED
     </footer>
 </div>
 
@@ -700,6 +794,32 @@ function runCode(){
     consoleBox.innerHTML = "✖ Error: " + err.message;
   }
 }
+
+window.addEventListener("load", function(){
+
+    const loader = document.getElementById("preloader");
+
+    /*
+      animation = 1s
+      max delay = 0.3s
+      full wave ≈ 1.3s
+      2 full cycles ≈ 2.6s
+    */
+
+    const FULL_ANIMATION_TIME = 2600;
+
+    setTimeout(()=>{
+        loader.style.transition = "opacity 0.6s ease";
+        loader.style.opacity = "0";
+
+        setTimeout(()=>{
+            loader.style.display = "none";
+        }, 600);
+
+    }, FULL_ANIMATION_TIME);
+
+});
+
 </script>
 
 </body>
