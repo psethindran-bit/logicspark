@@ -261,16 +261,6 @@ footer {
 
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader">
-    <div class="loading-wave">
-      <div class="loading-bar"></div>
-      <div class="loading-bar"></div>
-      <div class="loading-bar"></div>
-      <div class="loading-bar"></div>
-    </div>
-</div>
-
 <!-- LEFT SIDEBAR NAV -->
 <div class="sidebar">
     <div class="logo">
@@ -335,34 +325,7 @@ footer {
     </footer>
 </div>
 
-<!-- PRELOADER SCRIPT (PLAYS FULLY) -->
-<script>
-window.addEventListener("load", function(){
-
-    const loader = document.getElementById("preloader");
-
-    /* 
-      loading-wave = 1s animation
-      max delay = 0.3s
-      full wave ≈ 1.3s
-      we play 2 full cycles = ~2.6s
-    */
-
-    const FULL_ANIMATION_TIME = 2600;
-
-    setTimeout(()=>{
-        loader.style.transition = "opacity 0.6s ease";
-        loader.style.opacity = "0";
-
-        setTimeout(()=>{
-            loader.style.display = "none";
-        }, 600);
-
-    }, FULL_ANIMATION_TIME);
-
-});
-</script>
-
 </body>
 </html>
+
 
