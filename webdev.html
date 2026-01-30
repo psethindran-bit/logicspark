@@ -7,47 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-
-    /* ================= PRELOADER ================= */
-#preloader{
-    position:fixed;
-    inset:0;
-    background:#000;
-    z-index:99999;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-}
-
-/* loading-wave animation */
-.loading-wave {
-  width: 300px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.loading-bar {
-  width: 20px;
-  height: 10px;
-  margin: 0 5px;
-  background-color: #3498db;
-  border-radius: 5px;
-  animation: loading-wave-animation 1s ease-in-out infinite;
-}
-
-.loading-bar:nth-child(2) { animation-delay: 0.1s; }
-.loading-bar:nth-child(3) { animation-delay: 0.2s; }
-.loading-bar:nth-child(4) { animation-delay: 0.3s; }
-
-@keyframes loading-wave-animation {
-  0% { height: 10px; }
-  50% { height: 50px; }
-  100% { height: 10px; }
-}
-
 /* [KEEP ALL EXISTING CSS - SAME AS BEFORE] */
 :root {
     --bg: #000;
@@ -527,16 +486,6 @@ footer {
 
 <body>
 
-    <!-- ================= PRELOADER ================= -->
-<div id="preloader">
-    <div class="loading-wave">
-      <div class="loading-bar"></div>
-      <div class="loading-bar"></div>
-      <div class="loading-bar"></div>
-      <div class="loading-bar"></div>
-    </div>
-</div>
-
 
 <div class="sidebar">
     <div class="logo">
@@ -795,32 +744,8 @@ function runCode(){
   }
 }
 
-window.addEventListener("load", function(){
-
-    const loader = document.getElementById("preloader");
-
-    /*
-      animation = 1s
-      max delay = 0.3s
-      full wave ≈ 1.3s
-      2 full cycles ≈ 2.6s
-    */
-
-    const FULL_ANIMATION_TIME = 2600;
-
-    setTimeout(()=>{
-        loader.style.transition = "opacity 0.6s ease";
-        loader.style.opacity = "0";
-
-        setTimeout(()=>{
-            loader.style.display = "none";
-        }, 600);
-
-    }, FULL_ANIMATION_TIME);
-
-});
-
 </script>
 
 </body>
 </html>
+
